@@ -3,14 +3,14 @@ import 'package:todo_app/constants/colors.dart';
 import 'package:todo_app/model/todo.dart';
 class ToDoItem extends StatelessWidget {
   final ToDo todo;
-  final onToDoChanged;
-  final onDeleteItem;
+  final Function onToDoChanged;
+  final Function onDeleteItem;
   const ToDoItem({
-    Key? key,
+    super.key,
     required this.todo,
     required this.onToDoChanged,
     required this.onDeleteItem,
-}) : super(key:key);
+});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +30,9 @@ class ToDoItem extends StatelessWidget {
           Icons.check_box_outline_blank,
           color: tdBlue,
         ),
-        title: Text(todo.todoText!,style: TextStyle(
+        title: Text(todo.todoText,style: TextStyle(
           color: tdBlack,
+          fontSize: 16,
           decoration:todo.isDone? TextDecoration.lineThrough
               : null,
         ),

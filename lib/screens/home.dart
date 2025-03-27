@@ -89,7 +89,8 @@ class _HomeState extends State<Home> {
       if(!mounted) return;
       _todoController.clear();
       ScaffoldMessenger.of(context).showMaterialBanner(
-       MaterialBanner(content:
+       MaterialBanner(
+         content:
            const Text("You can't add empty item.",
             style: TextStyle(
              color: Colors.white,
