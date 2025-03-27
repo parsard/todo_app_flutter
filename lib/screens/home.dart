@@ -83,10 +83,44 @@ class _HomeState extends State<Home> {
   }
 
   void _addToDoItem(String toDo) {
-    if (toDo
-        .trim()
+    final trimmedTodo = toDo.trim();
+    if (trimmedTodo
         .isEmpty) {
-      print('can not add empty item');
+      if(!mounted) return;
+      _todoController.clear();
+      ScaffoldMessenger.of(context).showMaterialBanner(
+       MaterialBanner(content:
+           const Text("You can't add empty item.",
+            style: TextStyle(
+             color: Colors.white,
+            ),
+           ),
+           backgroundColor: tdGray,
+           leading: Icon(Icons.warning_amber_rounded,
+           color: Colors.red),
+
+            actions:<Widget>[
+              TextButton(onPressed:(){
+                ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+              },
+                  child: const Text('DISMISS',
+                  style: TextStyle(
+                    color: Colors.white
+                  ),
+                  ),
+              ),
+            ],
+       )
+      );
+          Future.delayed
+            (const Duration(seconds: 3),
+              () {
+            if(mounted)
+            {
+              ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
+            }
+          }
+      );
       return;
     }
 
