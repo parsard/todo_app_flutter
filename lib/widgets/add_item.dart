@@ -17,7 +17,7 @@ import 'package:todo_app/constants/colors.dart';
            Expanded(
              child: Container(
                margin: EdgeInsets.only
-                 (bottom: 30, right: 30, left: 30),
+                 (bottom: 30, right: 20, left: 20),
                height: 60,
                padding: EdgeInsets.symmetric(
                    horizontal: 20,
@@ -48,7 +48,7 @@ import 'package:todo_app/constants/colors.dart';
            Container(
              margin: EdgeInsets.only(
                bottom: 30,
-               right: 30,
+               right: 20,
              ), child:
            ElevatedButton(
              onPressed: onAddItem,

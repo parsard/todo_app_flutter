@@ -26,50 +26,54 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xFF4F959D),
-        appBar: AppBarWidget(),
-        body: Stack(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric
-                (horizontal: 20, vertical: 15),
-              child: Column(
-                children: [
-                  SearchBoxWidget(onChanged: _runFilter),
-                  Expanded(
-                    child: ListView(
-                      children: [
-                        Container(
-                          margin: EdgeInsets.only(top: 50, bottom: 20),
-                          child: Text('Todo App', style:
-                          TextStyle(color: tdBlack,
-                              fontSize: 34,
-                              fontWeight: FontWeight.w600),
-                          ),
-                        ),
-                        for (ToDo todoo in _foundToDo.reversed)
-                          ToDoItem(
-                            todo: todoo,
-                            onToDoChanged: _handleChange,
-                            onDeleteItem: _deleteItem,
-                            onEditItem: _editItem,
-                          )
-                      ],
-                    ),
+      backgroundColor: Color(0xFF4F959D),
+      appBar: AppBarWidget(),
+      body: Stack(
+        children: [
+          ListView(
+            padding: EdgeInsets.all(20),
+            children: [
+              SearchBoxWidget(onChanged: _runFilter),
+              Container(
+                margin: EdgeInsets.only(
+                    top: 50, bottom: 20
+                ),
+                child: Text(
+                  'Todo App',
+                  style: TextStyle(
+                    color: tdBlack,
+                    fontSize: 34,
+                    fontWeight: FontWeight.w600,
                   ),
-                ],
+                ),
               ),
+
+              // The list of TodoItem widgets
+              for (ToDo todo in _foundToDo.reversed)
+                ToDoItem(
+                  todo: todo,
+                  onToDoChanged: _handleChange,
+                  onDeleteItem: _deleteItem,
+                  onEditItem: _editItem,
+                ),
+              SizedBox(height: 100),
+            ],
+          ),
+
+          Positioned(
+            bottom: 10,
+            left: 0,
+            right: 0,
+            child: AddItemWidget(
+              todoController: _todoController,
+              onAddItem: () => _addToDoItem(_todoController.text),
             ),
-            AddItemWidget(
-              todoController:_todoController,
-              onAddItem: ()=> _addToDoItem(_todoController.text),
-            )
-
-          ],
-        )
+          ),
+        ],
+      ),
     );
-  }
 
+  }
   void _editItem(ToDo todo) {
     TextEditingController editController = TextEditingController(text: todo.todoText);
 
@@ -78,21 +82,29 @@ class _HomeState extends State<Home> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
+          backgroundColor: Color(0xFFF6F8D5),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40)
+          ),
           title: Text("Edit Todo"),
           content: TextField(
             controller: editController,
             autofocus: true,
             decoration: InputDecoration(
-              labelText: "Edit your todo",
               hintText: "Enter updated todo",
-            ),
+              focusedBorder:UnderlineInputBorder(
+                borderSide: BorderSide(
+                  color: Color(0xFF205781)
+                )
+              )
+            )
           ),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text("Cancel", style: TextStyle(color: tdBlack)),
+              child: Text("Cancel", style: TextStyle(color: Color(0xFFF38C79))),
             ),
             TextButton(
               onPressed: () {
@@ -113,7 +125,7 @@ class _HomeState extends State<Home> {
                 });
                 Navigator.of(context).pop();
               },
-              child: Text("Save", style: TextStyle(color: tdBlack)),
+              child: Text("Save", style: TextStyle(color: Color(0xFF4F959D))),
             ),
           ],
         );

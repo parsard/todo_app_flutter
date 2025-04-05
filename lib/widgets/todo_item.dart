@@ -73,7 +73,6 @@ class ToDoItem extends StatelessWidget {
                   iconSize: 18,
                   color: Colors.white,)
             ),
-
           ],
         ),
       ),
