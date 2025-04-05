@@ -9,7 +9,7 @@ class AppBarWidget extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       elevation: 0,
-      backgroundColor: tdBGColor,
+      backgroundColor: Color(0xFF4F959D),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

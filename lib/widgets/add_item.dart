@@ -52,15 +52,16 @@ import 'package:todo_app/constants/colors.dart';
              ), child:
            ElevatedButton(
              onPressed: onAddItem,
-             child:
-             Text(
-               '+', style: TextStyle(fontSize: 40,
-                 color: Colors.white),
-             ),
              style: ElevatedButton.styleFrom(
-                 backgroundColor: tdBlue,
+                 backgroundColor: Color(0xFFF6F8D5),
                  minimumSize: Size(60, 60),
                  elevation: 5
+             ),
+             child:
+             Text(
+               '+', style: TextStyle(
+                 fontSize: 40,
+                 color: Color(0xFF4F959D)),
              ),
            ),)
          ],

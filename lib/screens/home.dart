@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: tdBGColor,
+        backgroundColor: Color(0xFF4F959D),
         appBar: AppBarWidget(),
         body: Stack(
           children: [
@@ -43,7 +43,7 @@ class _HomeState extends State<Home> {
                           margin: EdgeInsets.only(top: 50, bottom: 20),
                           child: Text('Todo App', style:
                           TextStyle(color: tdBlack,
-                              fontSize: 30,
+                              fontSize: 34,
                               fontWeight: FontWeight.w600),
                           ),
                         ),
@@ -52,6 +52,7 @@ class _HomeState extends State<Home> {
                             todo: todoo,
                             onToDoChanged: _handleChange,
                             onDeleteItem: _deleteItem,
+                            onEditItem: _editItem,
                           )
                       ],
                     ),
@@ -69,6 +70,56 @@ class _HomeState extends State<Home> {
     );
   }
 
+  void _editItem(ToDo todo) {
+    TextEditingController editController = TextEditingController(text: todo.todoText);
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text("Edit Todo"),
+          content: TextField(
+            controller: editController,
+            autofocus: true,
+            decoration: InputDecoration(
+              labelText: "Edit your todo",
+              hintText: "Enter updated todo",
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text("Cancel", style: TextStyle(color: tdBlack)),
+            ),
+            TextButton(
+              onPressed: () {
+                String updatedText = editController.text.trim();
+                if (updatedText.isEmpty) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text("You can't add empty item.",
+                      style: TextStyle(
+                        color: Colors.black
+                      ),),
+                      backgroundColor: Color(0xFFF6F8D5),
+                      )
+                  );
+                  return;
+                }
+                setState(() {
+                  todo.todoText = updatedText;
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text("Save", style: TextStyle(color: tdBlack)),
+            ),
+          ],
+        );
+      },
+    );
+  }
   void _handleChange(ToDo todo) {
     setState(() {
       todo.isDone = !todo.isDone;
@@ -96,10 +147,9 @@ class _HomeState extends State<Home> {
              color: Colors.white,
             ),
            ),
-           backgroundColor: tdGray,
+           backgroundColor: Color(0xFF205781),
            leading: Icon(Icons.warning_amber_rounded,
            color: Colors.red),
-
             actions:<Widget>[
               TextButton(onPressed:(){
                 ScaffoldMessenger.of(context).hideCurrentMaterialBanner();
@@ -155,3 +205,5 @@ class _HomeState extends State<Home> {
     });
   }
 }
+
+
