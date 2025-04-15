@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:hexcolor/hexcolor.dart';
+import 'package:provider/provider.dart';
 import 'package:todo_app/screens/home.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:todo_app/provider/todo_provider.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const TodoApp());
 }
-class TodoApp extends StatefulWidget {
+
+class TodoApp extends StatelessWidget {
   const TodoApp({super.key});
 
   @override
-  State<TodoApp> createState() => _TodoAppState();
-}
-
-class _TodoAppState extends State<TodoApp> {
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home:Home(),
+    return ChangeNotifierProvider(
+      create: (context) => TodoModel(),
+      child: MaterialApp(debugShowCheckedModeBanner: false, home: Home()),
     );
   }
 }

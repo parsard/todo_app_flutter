@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:todo_app/constants/colors.dart';
  class AddItemWidget extends StatelessWidget {
    final VoidCallback onAddItem;
    final TextEditingController todoController;
-   const AddItemWidget({Key?key,
+   const AddItemWidget({super.key,
    required this.onAddItem,
    required this.todoController
-   }): super(key: key);
+   });
 
    @override
    Widget build(BuildContext context) {
