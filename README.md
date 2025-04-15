@@ -18,6 +18,3 @@ A simple yet powerful **ToDo app** built with **Flutter**, using **Provider** fo
 - **Shared Preferences** – Persistent local storage
 - **MVVM Architecture** – Separation of concerns for maintainability and scalability
 
-## 📂 Project Structure (MVVM)
-
-lib/ ├── models/ # Data models │ └── todo.dart ├── views/ # UI screens │ └── home_view.dart ├── viewmodels/ # Business logic and state │ └── todo_viewmodel.dart ├── services/ # Local storage service │ └── shared_preferences_service.dart ├── widgets/ # Reusable widgets │ └── todo_tile.dart └── main.dart
