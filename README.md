@@ -1,16 +1,23 @@
-# todo_app
+# 📝 Flutter ToDo App
 
-A new Flutter project.
+A simple yet powerful **ToDo app** built with **Flutter**, using **Provider** for state management, **Shared Preferences** for local data storage, and following the **MVVM (Model-View-ViewModel)** architecture for clean and scalable code organization.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+- ✅ Add, edit, and delete todos
+- 📋 Mark tasks as completed
+- 💾 Persistent storage using Shared Preferences
+- 💡 State management using Provider
+- 📐 Clean MVVM architecture
+- 📱 Responsive UI
 
-A few resources to get you started if this is your first Flutter project:
+## 🧠 Tech Stack
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Flutter** – Cross-platform UI toolkit
+- **Provider** – Lightweight state management
+- **Shared Preferences** – Persistent local storage
+- **MVVM Architecture** – Separation of concerns for maintainability and scalability
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📂 Project Structure (MVVM)
+
+lib/ ├── models/ # Data models │ └── todo.dart ├── views/ # UI screens │ └── home_view.dart ├── viewmodels/ # Business logic and state │ └── todo_viewmodel.dart ├── services/ # Local storage service │ └── shared_preferences_service.dart ├── widgets/ # Reusable widgets │ └── todo_tile.dart └── main.dart
